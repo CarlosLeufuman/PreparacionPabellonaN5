@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"> 
+    <link rel="icon" href="{% static 'img/MINSAL.png' %}" />
+    <title>Preparación de Pabellón</title>
+</head>
+
+<script>
+  function checkInfraestructura(id){
+    Swal.fire({
+      "title":"Se puede resolver a la brevedad?"
+    })
+  }
+
+</script>
+
+<body>
+
+    <div>
+        <img src="{% static 'img/fondossmso.jpg' %}">
+    </div>
+    
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- logo -->
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'img/MINSAL.png' %}" width="50" height="30" alt="logoBookStop">SSMSO
+        </a>
+
+        <div class="collapse navbar-collapse" id="opciones">   
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index1' %}">Inicio</a>
+                  </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Fase Pre-Quirúrgica</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'fase_quirurgica' %}">Fase Quirúrgica</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Fase Post-Quirúrgica</a>
+              </li>
+  
+            </ul>
+          </div>
+
+
+          {% if user.is_authenticated  %}
+
+          <div>
+            <a href="#" id="userDePelos">
+              Bienvenido @{{user.username}}
+            </a>
+          </div>
+    
+    
+          <div>
+            <a href="http://127.0.0.1:8000/admin/" id="userDePelos" style="color: green">
+                <img src="{% static 'img/useeer.png' %}" alt="userDePelos" width="20px">Administración.
+            </a>
+          </div>
+    
+          <div>
+            <a href="{%  url 'logout' %}" id="userDePelos" style="color: red">
+                <img src="{% static 'img/xez.png' %}" alt="userDePelos" width="20px">Cerrar Sessión.
+            </a>
+          </div>
+    
+          {% else %}
+    
+          <div>
+            <a href="{%  url 'login' %}" id="userDePelos">
+              <img src="{% static 'img/usermujer.png' %}" alt="userDePelos" width="20px">Iniciar Sesión
+            </a>
+          </div>
+          {% endif %}
+        
+
+
+      </nav>
+
+
+      <div class="divcajas">
+      <br>
+      <div class="container-fluid fondo color">
+        <br>
+        <hr>
+      <h1>Preparación de Pabellón</h1>
+      <hr>
+      <p class="pt" style="color: black;">Es el proceso de apoyo, correspondiente al conjunto de
+        actividades enfocadas a chequear que el pabellón contemple las condiciones necesarias a nivel
+        de infraestructura, insumos específicos, recurso humano asignado para la cirugía. De esta
+        manera si todo está en óptimas condiciones se informa que los recursos están en condiciones
+        para poder iniciar la intervención.</p>
+      <br>
+    </div>
+      <br>
+
+      <div class="container-fluid fondo color">
+        <br>
+        
+      <h1 style="font-size: 180%;">Tareas a completar manualmente.</h1><hr>
+      
+      <p class="pt" style="color: black;">
+        Chequear la Infraestructura, Equipo e Insumos Especificos y  RRHH Asignado
+      </p><br>
+      
+    </div>
+
+      <br>
+
+      {% csrf_token %}
+      <div class="container-fluid fondo color">
+        
+        <div class="row jumbotron" >
+            <div class="col-lg-6">
+              <div class="div2">
+                <hr>
+                <h1>Chequeo de Infraestructura </h1>
+                <hr>
+                <p class="pt" style="color: black;">
+                  Tarea en la cual se verifica que
+                  todos los aspectos de infraestructura
+                  estén en perfectas condiciones
+                  como: maquina de anestesia, mesa
+                  quirúrgica, equipo de Rx. Etc.
+                </p><hr>
+                <p class="pt" style="color: black;">
+                  ¿La Infraestructura se encuentra en condiciones? (Si está en condiciones revise la siguiente tarea)
+                </p>
+
+                 
+                <p class="pindex">
+                  
+                  <a href="{%  url 'SoluBrevedadInfra' %}" class="btn btn-dark">No está en condiciones</a></p>
+                  <br>
+                </div>
+              </div>
+              
+          <div class="col-lg-6">
+            <img src="{% static 'img/infraestructura.jpg' %}" class="imgacc">
+          </div>
+          </div>
+      </div>
+
+    <br>
+
+    <div class="container-fluid fondo color">
+        
+        <div class="row jumbotron" >
+            <div class="col-lg-6">
+              <div class="div2">
+                <hr>
+                <h1>Chequeo de Equipo e Insumos Especificos</h1>
+                <hr>
+                <p class="pt" style="color: black;">
+                  Tarea en la cual se verifica que
+                  estén todos los insumos específicos
+                  para la intervención como:
+                  implantes, ortesis, suturas
+                  mecánicas, etc.
+                </p>
+                <hr>
+                <p class="pt" style="color: black;">
+                  ¿Equipo e Insumos están Completos? (Si están completos, revise la siguiente tarea)
+                </p>
+                <br>
+                <p class="pindex">
+
+                  <a href="{%  url 'SoluBrevedadInsumos' %}" class="btn btn-dark">No están completos</a>
+                
+                </div>
+              </div>
+              
+          <div class="col-lg-6">
+            <img src="{% static 'img/insumos.jpg' %}" class="imgacc">
+          </div>
+          </div>
+      </div>
+
+      <br>
+
+
+      <div class="container-fluid fondo color">
+        
+        <div class="row jumbotron" >
+            <div class="col-lg-6">
+              <div class="div2">
+                <hr>
+                <h1>Chequeo RRHH Asignado</h1><hr>
+                <p class="pt" style="color: black;">
+                  Tarea en la cual se verifica que esté
+                  todo el recurso humano designado
+                  para la intervención.
+                </p>
+                <hr>
+
+                <p class="pt" style="color: black;">
+                  ¿RRHH se encuentra disponible? (Si está disponible, revise las otras tareas)
+                </p>
+
+                <p class="pindex">
+                  <a href="{%  url 'SoluBrevedadRRHH' %}" class="btn btn-dark">No está presente</a>
+                  <br>
+                </div>
+              </div>
+              
+          <div class="col-lg-6">
+            <img src="{% static 'img/recursohumano.jpg' %}" class="imgacc">
+          </div>
+          </div>
+
+
+      </div>
+
+    <br>   
+
+    <div class="container-fluid fondo color">
+      <br>
+      <hr>
+    <h1>Registrar Pabellón en Condiciónes</h1>
+    <hr>
+    <p class="pt" style="color: black;">Áca puedes ingresar los pabellónes que esten completos.</p>
+    <br>
+    <p class="pt">
+    <a  href="{%  url 'form_registrar_pabellon' %}" class="btn btn-dark">Ingresar Pabellón</a>
+    <a  href="{%  url 'mostrar_pabellon' %}" class="btn btn-dark">Mostrar Pabellones</a></p>
+    <br><br>
+  </div>
+
+  <br><br><br>
+
+    </div>
+
+
+
+
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+
+</html>

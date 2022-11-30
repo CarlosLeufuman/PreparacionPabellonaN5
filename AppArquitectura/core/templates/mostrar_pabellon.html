@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/MINSAL.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"> 
+    <title>Administración Pabellones</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- logo -->
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'img/MINSAL.png' %}" width="50" height="30" alt="logoBookStop">SSMSO
+        </a>
+
+        <div class="collapse navbar-collapse" id="opciones">   
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index1' %}">Inicio</a>
+                  </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'preparacionpabellon' %}">Preparación de pabellón</a>
+              </li>
+  
+            </ul>
+          </div>
+
+
+          {% if user.is_authenticated  %}
+
+          <div>
+            <a href="#" id="userDePelos">
+              Bienvenido @{{user.username}}
+            </a>
+          </div>
+    
+    
+          <div>
+            <a href="http://127.0.0.1:8000/admin/" id="userDePelos" style="color: green">
+                <img src="{% static 'img/useeer.png' %}" alt="userDePelos" width="20px">Administración.
+            </a>
+          </div>
+    
+          <div>
+            <a href="{%  url 'logout' %}" id="userDePelos" style="color: red">
+                <img src="{% static 'img/xez.png' %}" alt="userDePelos" width="20px">Cerrar Sessión.
+            </a>
+          </div>
+    
+          {% else %}
+    
+          <div>
+            <a href="{%  url 'login' %}" id="userDePelos">
+              <img src="{% static 'img/usermujer.png' %}" alt="userDePelos" width="20px">Iniciar Sesión
+            </a>
+          </div>
+          {% endif %}
+        
+
+
+      </nav><br><br><br>
+
+            <!--LO QUE VIEN........-->
+
+          <div class="container-fluid fondo color ">
+            <br><hr><h1>Mostrando Pabellones</h1><hr>
+            {% if user.is_authenticated  %}
+            <p class="pt"><a href="{% url 'form_registrar_pabellon' %}" class="btn btn-dark">Ingresar Pabellón</a> </p><br>
+            {% else %}
+            <H1>UPS......</H1>
+            <p class="pt" >Usted no tiene acceso a Administrar los Pabellones.</p><br>
+            {% endif %}
+          </div><br><br><br>
+
+          {% if user.is_authenticated  %}
+<div class="container-fluid fondo color ">
+    <div class="container">
+        <table  class="table">
+            <thead>
+                <tr>
+                    <th>Numero Pabellón</th>
+                    <th>Infraestructura en Condiciones</th>
+                    <th>Equipo Disponible</th>
+                    <th>RRHH Diponible</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+            {% for ve in pabellonencondiciones %}
+
+                <tr>
+                    <td>{{ ve.n_pabellon }}</td>
+                    <td>{{ ve.c_infra }}</td>
+                    <td>{{ ve.c_equipo }}</td>
+                    <td>{{ ve.c_rrhh }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div></div>
+    {% else %}
+    <hr>
+    <a href="{% url 'login' %}"><H1>Iniciar Sessión</H1></a>
+    <hr>
+    {% endif %}
+    <br><br>
+
+
+
+
+</body>
+</html>

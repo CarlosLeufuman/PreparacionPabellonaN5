@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"> 
+    <link rel="icon" href="{% static 'img/MINSAL.png' %}" />
+    <title>Proceso Quirúrgico SSMSO</title>
+</head>
+<body>
+
+    <div>
+        <img src="{% static 'img/fondossmso.jpg' %}">
+    </div>
+    
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- logo -->
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'img/MINSAL.png' %}" width="50" height="30" alt="logoBookStop">SSMSO
+        </a>
+
+        <div class="collapse navbar-collapse" id="opciones">   
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Fase Pre-Quirúrgica</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'fase_quirurgica' %}">Fase Quirúrgica</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Fase Post-Quirúrgica</a>
+              </li>
+  
+            </ul>
+          </div>
+
+
+          {% if user.is_authenticated  %}
+
+          <div>
+            <a href="#" id="userDePelos">
+              Bienvenido @{{user.username}}
+            </a>
+          </div>
+    
+    
+          <div>
+            <a href="http://127.0.0.1:8000/admin/" id="userDePelos" style="color: green">
+                <img src="{% static 'img/useeer.png' %}" alt="userDePelos" width="20px">Administración.
+            </a>
+          </div>
+    
+          <div>
+            <a href="{%  url 'logout' %}" id="userDePelos" style="color: red">
+                <img src="{% static 'img/xez.png' %}" alt="userDePelos" width="20px">Cerrar Sessión.
+            </a>
+          </div>
+    
+          {% else %}
+    
+          <div>
+            <a href="{%  url 'login' %}" id="userDePelos">
+              <img src="{% static 'img/usermujer.png' %}" alt="userDePelos" width="20px">Iniciar Sesión
+            </a>
+          </div>
+          {% endif %}
+        
+
+
+      </nav>
+
+
+      <div class="divcajas">
+      <br>
+      <div class="container-fluid fondo color">
+        <br>
+        <hr>
+      <h1>Proceso Quirúrgico del Servicio de Salud Metropolitano Sur Oriente</h1>
+      <hr>
+      <br>
+    </div>
+      <br>
+
+      <br>
+
+
+      <div class="container-fluid fondo color">
+        
+        <div class="row jumbotron" >
+            <div class="col-lg-6">
+              <div class="div2">
+                <hr>
+                <h1>Fase Pre-Quirúrgica </h1><hr>
+                <p style="color: rgb(85, 85, 85);">Se inicia con la recepción de interconsulta del paciente que requiere atención
+                    por especialidad quirúrgica. Para ingresar a esta fase, el paciente debe tener completo el proceso
+                    diagnóstico de la patología a operar (según protocolo diagnóstico dependiente de cada especialidad)
+                    y la indicación quirúrgica ya generada por el especialista o equipo quirúrgico a cargo de la cirugía.
+                    Una vez que el paciente ha sido estudiado en la Unidad Pre-Quirúrgica y definido como programable,
+                    se realiza la solicitud de pabellón, ingresando el usuario a la lista de espera quirúrgica. Finaliza una
+                    vez que el paciente es incluido en la tabla quirúrgica. Esta fase también incluye el proceso de apoyo
+                    de programación de pabellones.</p>
+                <br>
+                <p class="pindex">
+                 
+                  <a href="#" class="btn btn-dark">Pre-Quirúrgica</a>
+                  <br>
+                </div>
+              </div>
+              
+          <div class="col-lg-6">
+            <img src="{% static 'img/pre.jpg' %}" class="imgacc">
+          </div>
+          </div>
+      </div>
+
+    <br>
+
+    <div class="container-fluid fondo color">
+        
+        <div class="row jumbotron" >
+            <div class="col-lg-6">
+              <div class="div2">
+                <br><br><hr>
+                <h1>Fase Quirúrgica</h1><hr>
+                <p style="color:rgb(85, 85, 85)">
+                    Se inicia con la recepción del paciente en el pabellón en el día y hora definidos
+                    previamente. Termina con la indicación médica de traslado al destino postoperatorio, una vez
+                    realizada la intervención quirúrgica.
+
+                </p>
+                <br>
+                <p class="pindex">
+                    
+                 
+                  
+                  <a href="{% url 'fase_quirurgica' %}" class="btn btn-dark">Fase Quirúrgica</a>
+                  <br><br>
+                </div>
+              </div>
+              
+          <div class="col-lg-6">
+            <img src="{% static 'img/proceso_quirurgico.jpg' %}" class="imgacc">
+          </div>
+          </div>
+      </div>
+
+      <br>
+
+
+      <div class="container-fluid fondo color">
+        
+        <div class="row jumbotron" >
+            <div class="col-lg-6">
+              <div class="div2">
+                <br><br><hr>
+                <h1>Fase Post-Quirúrgica</h1><hr>
+                <p style="color:rgb(85, 85, 85)">Comienza con la indicación médica de traslado al destino postoperatorio y
+                    finaliza con el traslado del paciente al destino final indicado: sala de hospitalización para cuidados
+                    críticos, medios o básicos o al domicilio como alta.</p>
+                <br>
+                <p class="pindex">
+                    
+                  <a href="#" class="btn btn-dark">Post-Quirúrgica</a>
+                  <br><br>
+                </div>
+              </div>
+              
+          <div class="col-lg-6">
+            <img src="{% static 'img/post.jpg' %}" class="imgacc">
+          </div>
+          </div>
+
+
+      </div>
+
+      
+
+    </div>
+
+
+
+
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+
+</html>
